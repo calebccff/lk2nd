@@ -428,6 +428,8 @@ void target_detect(struct board_data *board)
 			platform);
 		ASSERT(0);
 	}
+	target_id = LINUX_MACHTYPE_8930_CDP;
+
 	board->target = target_id;
 }
 

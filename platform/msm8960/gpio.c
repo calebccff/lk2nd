@@ -26,6 +26,7 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <bits.h>
 #include <debug.h>
 #include <reg.h>
 #include <platform/iomap.h>
@@ -332,4 +333,9 @@ void apq8064_display_gpio_init()
 			pm8921_gpio_config(pm8921_display_gpios_apq[i].gpio,
 				&(pm8921_display_gpios_apq[i].config));
 		}
+}
+
+uint32_t gpio_status(uint32_t gpio)
+{
+	return readl(GPIO_IN_OUT_ADDR(gpio)) & GPIO_IN;
 }

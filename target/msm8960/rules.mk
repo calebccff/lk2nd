@@ -19,13 +19,15 @@ KEYS_USE_GPIO_KEYPAD := 1
 DEFINES += DISPLAY_SPLASH_SCREEN=1
 DEFINES += DISPLAY_TYPE_MIPI=1
 DEFINES += DISPLAY_TYPE_HDMI=1
+DEFINES += PLATFORM_MSM8960=1
 
 MODULES += \
 	dev/keys \
 	dev/pmic/pm8921 \
+	dev/gcdb/display \
 	dev/ssbi \
 	lib/ptable \
-	dev/panel/msm \
+	lib/libfdt
 
 DEFINES += \
 	MEMSIZE=$(MEMSIZE) \
@@ -34,7 +36,7 @@ DEFINES += \
 	TAGS_ADDR=$(TAGS_ADDR) \
 	KERNEL_ADDR=$(KERNEL_ADDR) \
 	RAMDISK_ADDR=$(RAMDISK_ADDR) \
-	SCRATCH_ADDR=$(SCRATCH_ADDR)
+	SCRATCH_ADDR=$(SCRATCH_ADDR) \
 
 ifeq ($(LINUX_MACHTYPE_RUMI3), 1)
 DEFINES += LINUX_MACHTYPE_RUMI3
@@ -44,4 +46,5 @@ OBJS += \
 	$(LOCAL_DIR)/init.o \
 	$(LOCAL_DIR)/atags.o \
 	$(LOCAL_DIR)/keypad.o \
+	$(LOCAL_DIR)/meminfo.o \
 	$(LOCAL_DIR)/target_display.o

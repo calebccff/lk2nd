@@ -32,7 +32,7 @@
 #include <err.h>
 #include <dev/pm8921.h>
 #include <platform/timer.h>
-#include "pm8921_hw.h"
+#include "dev/pm8921_hw.h"
 
 static pm8921_dev_t *dev;
 
@@ -206,7 +206,7 @@ int pm8921_gpio_get(uint8_t gpio, uint8_t *status)
 	return ret;
 }
 
-int pm8921_pwrkey_status(uint8_t *is_pwrkey_pressed)
+uint32_t pm8921_get_pwrkey_is_pressed()
 {
 	int ret = 0;
 	uint8_t block_status;
@@ -216,9 +216,9 @@ int pm8921_pwrkey_status(uint8_t *is_pwrkey_pressed)
 	if (!ret)
 	{
 		if(block_status & PM_PWRKEY_PRESS_BIT)
-			*is_pwrkey_pressed = 1;
+			return 1;
 		else
-			*is_pwrkey_pressed = 0;
+			return 0;
 	}
 	return ret;
 }
@@ -652,6 +652,24 @@ int pm89xx_vbus_status(void)
 
 	return reg;
 }
+
+#define LDO(_name, _type, _test_reg, _ctrl_reg) \
+{\
+	.name = _name,\
+	.type = _type,\
+	.test_reg = _test_reg,\
+	.ctrl_reg = _ctrl_reg, \
+}
+
+static struct pm89xx_vreg ldo_data[] = {
+	LDO("LDO30", PLDO_TYPE, 0x0A3, 0x0A4),
+	LDO("LDO31", PLDO_TYPE, 0x0A5, 0x0A6),
+	LDO("LDO32", PLDO_TYPE, 0x0A7, 0x0A8),
+	LDO("LDO33", PLDO_TYPE, 0x0C6, 0x0C7),
+	LDO("LDO34", PLDO_TYPE, 0x0D2, 0x0D3),
+	LDO("LDO35", PLDO_TYPE, 0x0D4, 0x0D5),
+	LDO("LDO36", PLDO_TYPE, 0x0A9, 0x0AA),
+};
 
 static struct pm89xx_vreg *ldo_get(const char *ldo_name)
 {

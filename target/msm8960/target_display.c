@@ -261,81 +261,83 @@ void target_display_init(const char *panel_name)
 
 	dprintf(INFO, "display_init(),target_id=%d.\n", target_id);
 
-	switch (target_id) {
-	case LINUX_MACHTYPE_8960_LIQUID:
-		mipi_chimei_video_wxga_init(&(panel.panel_info));
-		/*
-		 * mipi_chimei_wxga panel not supported yet in LK.
-		 * However, MIPI clocks and power should be set in LK.
-		 */
-		panel.clk_func = msm8960_liquid_mipi_panel_clock;
-		panel.power_func = msm8960_liquid_mipi_panel_power;
-		panel.fb.base = MIPI_FB_ADDR;
-		panel.fb.width =  panel.panel_info.xres;
-		panel.fb.height =  panel.panel_info.yres;
-		panel.fb.stride =  panel.panel_info.xres;
-		panel.fb.bpp =  panel.panel_info.bpp;
-		panel.fb.format = FB_FORMAT_RGB888;
-		panel.mdp_rev = MDP_REV_44;
-		break;
-	case LINUX_MACHTYPE_8064_CDP:
-		lvds_chimei_wxga_init(&(panel.panel_info));
-		panel.clk_func = apq8064_lvds_clock;
-		panel.power_func = apq8064_lvds_panel_power;
-		panel.fb.base = 0x80B00000;
-		panel.fb.width =  panel.panel_info.xres;
-		panel.fb.height =  panel.panel_info.yres;
-		panel.fb.stride =  panel.panel_info.xres;
-		panel.fb.bpp =  panel.panel_info.bpp;
-		panel.fb.format = FB_FORMAT_RGB888;
-		panel.mdp_rev = MDP_REV_44;
-		break;
-	case LINUX_MACHTYPE_8064_MTP:
-		mipi_toshiba_video_wsvga_init(&(panel.panel_info));
-		panel.clk_func = fusion3_mtp_clock;
-		panel.power_func = fusion3_mtp_panel_power;
-		panel.fb.base = 0x89000000;
-		panel.fb.width =  panel.panel_info.xres;
-		panel.fb.height =  panel.panel_info.yres;
-		panel.fb.stride =  panel.panel_info.xres;
-		panel.fb.bpp =  panel.panel_info.bpp;
-		panel.fb.format = FB_FORMAT_RGB888;
-		panel.mdp_rev = MDP_REV_44;
-		break;
-	case LINUX_MACHTYPE_8960_CDP:
-	case LINUX_MACHTYPE_8960_MTP:
-	case LINUX_MACHTYPE_8960_FLUID:
-		mipi_toshiba_video_wsvga_init(&(panel.panel_info));
-		panel.clk_func = msm8960_mipi_panel_clock;
-		panel.power_func = msm8960_mipi_panel_power;
-		panel.fb.base = 0x89000000;
-		panel.fb.width =  panel.panel_info.xres;
-		panel.fb.height =  panel.panel_info.yres;
-		panel.fb.stride =  panel.panel_info.xres;
-		panel.fb.bpp =  panel.panel_info.bpp;
-		panel.fb.format = FB_FORMAT_RGB888;
-		panel.mdp_rev = MDP_REV_42;
-		break;
-	case LINUX_MACHTYPE_8064_MPQ_CDP:
-	case LINUX_MACHTYPE_8064_MPQ_HRD:
-	case LINUX_MACHTYPE_8064_MPQ_DTV:
-		hdmi_msm_panel_init(&panel.panel_info);
+	return;
 
-		panel.clk_func   = mpq8064_hdmi_panel_clock;
-		panel.power_func = mpq8064_hdmi_panel_power;
-		panel.fb.base    = 0x89000000;
-		panel.fb.width   = panel.panel_info.xres;
-		panel.fb.height  = panel.panel_info.yres;
-		panel.fb.stride  = panel.panel_info.xres;
-		panel.fb.bpp     = panel.panel_info.bpp;
-		panel.fb.format  = FB_FORMAT_RGB565;
-		panel.mdp_rev    = MDP_REV_44;
+	//switch (target_id) {
+	// case LINUX_MACHTYPE_8960_LIQUID:
+	// 	mipi_chimei_video_wxga_init(&(panel.panel_info));
+	// 	/*
+	// 	 * mipi_chimei_wxga panel not supported yet in LK.
+	// 	 * However, MIPI clocks and power should be set in LK.
+	// 	 */
+	// 	panel.clk_func = msm8960_liquid_mipi_panel_clock;
+	// 	panel.power_func = msm8960_liquid_mipi_panel_power;
+	// 	panel.fb.base = MIPI_FB_ADDR;
+	// 	panel.fb.width =  panel.panel_info.xres;
+	// 	panel.fb.height =  panel.panel_info.yres;
+	// 	panel.fb.stride =  panel.panel_info.xres;
+	// 	panel.fb.bpp =  panel.panel_info.bpp;
+	// 	panel.fb.format = FB_FORMAT_RGB888;
+	// 	panel.mdp_rev = MDP_REV_44;
+	// 	break;
+	// case LINUX_MACHTYPE_8064_CDP:
+	// 	lvds_chimei_wxga_init(&(panel.panel_info));
+	// 	panel.clk_func = apq8064_lvds_clock;
+	// 	panel.power_func = apq8064_lvds_panel_power;
+	// 	panel.fb.base = 0x80B00000;
+	// 	panel.fb.width =  panel.panel_info.xres;
+	// 	panel.fb.height =  panel.panel_info.yres;
+	// 	panel.fb.stride =  panel.panel_info.xres;
+	// 	panel.fb.bpp =  panel.panel_info.bpp;
+	// 	panel.fb.format = FB_FORMAT_RGB888;
+	// 	panel.mdp_rev = MDP_REV_44;
+	// 	break;
+	// case LINUX_MACHTYPE_8064_MTP:
+	// 	mipi_toshiba_video_wsvga_init(&(panel.panel_info));
+	// 	panel.clk_func = fusion3_mtp_clock;
+	// 	panel.power_func = fusion3_mtp_panel_power;
+	// 	panel.fb.base = 0x89000000;
+	// 	panel.fb.width =  panel.panel_info.xres;
+	// 	panel.fb.height =  panel.panel_info.yres;
+	// 	panel.fb.stride =  panel.panel_info.xres;
+	// 	panel.fb.bpp =  panel.panel_info.bpp;
+	// 	panel.fb.format = FB_FORMAT_RGB888;
+	// 	panel.mdp_rev = MDP_REV_44;
+	// 	break;
+	// case LINUX_MACHTYPE_8960_CDP:
+	// case LINUX_MACHTYPE_8960_MTP:
+	// case LINUX_MACHTYPE_8960_FLUID:
+	// 	mipi_toshiba_video_wsvga_init(&(panel.panel_info));
+	// 	panel.clk_func = msm8960_mipi_panel_clock;
+	// 	panel.power_func = msm8960_mipi_panel_power;
+	// 	panel.fb.base = 0x89000000;
+	// 	panel.fb.width =  panel.panel_info.xres;
+	// 	panel.fb.height =  panel.panel_info.yres;
+	// 	panel.fb.stride =  panel.panel_info.xres;
+	// 	panel.fb.bpp =  panel.panel_info.bpp;
+	// 	panel.fb.format = FB_FORMAT_RGB888;
+	// 	panel.mdp_rev = MDP_REV_42;
+	// 	break;
+	// case LINUX_MACHTYPE_8064_MPQ_CDP:
+	// case LINUX_MACHTYPE_8064_MPQ_HRD:
+	// case LINUX_MACHTYPE_8064_MPQ_DTV:
+	// 	hdmi_msm_panel_init(&panel.panel_info);
 
-		hdmi_set_fb_addr(panel.fb.base);
-		break;
-	default:
-		return;
-	};
+	// 	panel.clk_func   = mpq8064_hdmi_panel_clock;
+	// 	panel.power_func = mpq8064_hdmi_panel_power;
+	// 	panel.fb.base    = 0x89000000;
+	// 	panel.fb.width   = panel.panel_info.xres;
+	// 	panel.fb.height  = panel.panel_info.yres;
+	// 	panel.fb.stride  = panel.panel_info.xres;
+	// 	panel.fb.bpp     = panel.panel_info.bpp;
+	// 	panel.fb.format  = FB_FORMAT_RGB565;
+	// 	panel.mdp_rev    = MDP_REV_44;
+
+	// 	hdmi_set_fb_addr(panel.fb.base);
+	// 	break;
+	// default:
+	// 	return;
+	// };
 
 	if (msm_display_init(&panel)) {
 		dprintf(CRITICAL, "Display init failed!\n");

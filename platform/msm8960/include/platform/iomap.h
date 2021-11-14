@@ -92,6 +92,29 @@
 
 #define MIPI_DSI_BASE                         (0x04700000)
 #define REG_DSI(off)                          (MIPI_DSI_BASE + (off))
+#define MIPI_DSI0_BASE              (MIPI_DSI_BASE)
+#define MIPI_DSI1_BASE              (0x04700600)
+#define DSI0_PHY_BASE               (0x4700300)
+#define DSI1_PHY_BASE               (0x4700900)
+#define DSI0_PLL_BASE               (0x4700200)
+#define DSI1_PLL_BASE               (0x4700800)
+#define REG_DSI(off)                (MIPI_DSI_BASE + 0x04 + (off))
+#define MDP_BASE                    (0x46dd800)
+#define REG_MDP(off)                (MDP_BASE + (off))
+#define MDP_VP_0_VIG_0_BASE         REG_MDP(0x1200)
+#define MDP_VP_0_VIG_1_BASE         REG_MDP(0x1600)
+#define MDP_VP_0_RGB_0_BASE         REG_MDP(0x2200)
+#define MDP_VP_0_RGB_1_BASE         REG_MDP(0x2600)
+#define MDP_VP_0_DMA_0_BASE         REG_MDP(0x3200)
+#define MDP_VP_0_DMA_1_BASE         REG_MDP(0x3600)
+#define MDP_VP_0_MIXER_0_BASE       REG_MDP(0x3A00)
+#define MDP_VP_0_MIXER_1_BASE       REG_MDP(0x3E00)
+
+#define INT_CTRL                    0x110
+
+#define LANE_CTL                    0x0AC
+#define LANE_SWAP_CTL               0x0B0
+#define TIMING_CTL                  0x0C4
 
 #define DSIPHY_REGULATOR_BASE                 (0x500)
 #define DSIPHY_TIMING_BASE                    (0x440)

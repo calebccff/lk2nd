@@ -33,9 +33,8 @@
 
 /* Toshiba MDT61 Mipi Panel */
 /* Unique to this panel, display width is 800, image is 600 */
-#define TSH_MDT61_DISPLAY_WIDTH      800
-#define TSH_MDT61_MIPI_FB_WIDTH      (TSH_MDT61_DISPLAY_WIDTH - 200)
-#define TSH_MDT61_MIPI_FB_HEIGHT     1024
+#define MOT_AUO_430_MIPI_FB_WIDTH      540
+#define MOT_AUO_430_MIPI_FB_HEIGHT     900
 
 #define MIPI_HSYNC_PULSE_WIDTH       8
 #define MIPI_HSYNC_BACK_PORCH_DCLK   16
@@ -48,5 +47,36 @@
 extern int mipi_dsi_phy_init(struct mipi_dsi_panel_config *);
 extern void mdp_setup_mdt61_video_dsi_config(void);
 extern void config_mdt61_dsi_video_mode(void);
+
+/*---------------------------------------------------------------------------*/
+/* Target Physical configuration                                             */
+/*---------------------------------------------------------------------------*/
+
+static const uint32_t panel_strength_ctrl[] = {
+  0xff, 0x06
+};
+
+static const char panel_bist_ctrl[] = {
+  0x00, 0x00, 0xb1, 0xff, 0x00, 0x00
+};
+
+static const uint32_t panel_regulator_settings[] = {
+  0x03, 0x09, 0x03, 0x00, 0x20, 0x07, 0x01
+};
+
+static const char panel_lane_config[] = {
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x97,
+  0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x01, 0x97,
+  0x00, 0x00, 0x00, 0x00, 0x0a, 0x00, 0x00, 0x01, 0x97,
+  0x00, 0x00, 0x00, 0x00, 0x0f, 0x00, 0x00, 0x01, 0x97,
+  0x00, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xbb
+};
+
+static const uint32_t panel_physical_ctrl[] = {
+  0x5f, 0x00, 0x00, 0x10
+};
+
+#define DISPLAY_CMDLINE_PREFIX " mdss_mdp.panel="
+
 
 #endif

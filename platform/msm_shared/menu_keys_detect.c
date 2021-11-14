@@ -29,8 +29,13 @@
 #include <debug.h>
 #include <reg.h>
 #include <stdlib.h>
+#if PLATFORM_MSM8960
+#include <dev/pm8921.h>
+#include <dev/pm8921_hw.h>
+#else
 #include <pm8x41.h>
 #include <pm8x41_hw.h>
+#endif
 #include <kernel/timer.h>
 #include <platform/timer.h>
 #include <kernel/thread.h>
@@ -68,7 +73,11 @@ struct keys_stru {
 struct keys_stru keys[] = {
 	{VOLUME_UP, (uint32_t (*)(void))target_volume_up},
 	{VOLUME_DOWN, target_volume_down},
+#if PLATFORM_MSM8960
+	{POWER_KEY, pm8921_get_pwrkey_is_pressed},
+#else
 	{POWER_KEY, pm8x41_get_pwrkey_is_pressed},
+#endif
 };
 
 struct pages_action {

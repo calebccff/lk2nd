@@ -53,6 +53,10 @@
 #define GPIO_ENABLE     1
 #define GPIO_DISABLE    0
 
+/* GPIO_IN_OUT register shifts. */
+#define GPIO_IN         BIT(0)
+#define GPIO_OUT        BIT(1)
+
 void gpio_config_i2c(uint8_t gsbi_id);
 void gpio_config_uart_dm(uint8_t id);
 void msm8960_keypad_gpio_init();

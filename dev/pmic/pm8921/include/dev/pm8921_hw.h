@@ -26,6 +26,8 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _PM8921_HW_H
+#define _PM8921_HW_H
 #include <bits.h>
 
 #define PBL_ACCESS_2                          0x005
@@ -167,21 +169,4 @@
 #define WLED_SYNC_MASK                 0xF8
 
 #define PM8921_MVS_5V_HDMI_SWITCH             0x70
-
-#define LDO(_name, _type, _test_reg, _ctrl_reg) \
-{\
-	.name = _name,\
-	.type = _type,\
-	.test_reg = _test_reg,\
-	.ctrl_reg = _ctrl_reg, \
-}
-
-struct pm89xx_vreg ldo_data[] = {
-	LDO("LDO30", PLDO_TYPE, 0x0A3, 0x0A4),
-	LDO("LDO31", PLDO_TYPE, 0x0A5, 0x0A6),
-	LDO("LDO32", PLDO_TYPE, 0x0A7, 0x0A8),
-	LDO("LDO33", PLDO_TYPE, 0x0C6, 0x0C7),
-	LDO("LDO34", PLDO_TYPE, 0x0D2, 0x0D3),
-	LDO("LDO35", PLDO_TYPE, 0x0D4, 0x0D5),
-	LDO("LDO36", PLDO_TYPE, 0x0A9, 0x0AA),
-};
+#endif

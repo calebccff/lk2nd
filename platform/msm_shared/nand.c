@@ -3567,6 +3567,12 @@ static int flash_read_page(unsigned page, void *data, void *extra)
 }
 #endif
 
+unsigned
+flash_num_pages_per_blk(void)
+{
+	return num_pages_per_blk;
+}
+
 unsigned flash_page_size(void)
 {
 	return flash_pagesize;

@@ -94,6 +94,7 @@ ifeq ($(PLATFORM),msm8960)
 			$(LOCAL_DIR)/clock_pll.o \
 			$(LOCAL_DIR)/board.o \
 			$(LOCAL_DIR)/display.o \
+			$(LOCAL_DIR)/dev_tree.o \
 			$(LOCAL_DIR)/lvds.o \
 			$(LOCAL_DIR)/mipi_dsi_phy.o \
 			$(LOCAL_DIR)/timer.o \

@@ -31,6 +31,7 @@
 #define _PLATFORM_MSM_SHARED_MIPI_DSI_H_
 
 #include <msm_panel.h>
+#include <bits.h>
 
 #define PASS                        0
 #define FAIL                        1

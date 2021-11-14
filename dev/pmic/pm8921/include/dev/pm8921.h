@@ -158,6 +158,9 @@ struct pm8921_gpio {
 	int disable_pin;
 };
 
+// hack
+#define pm8x41_gpio pm8921_gpio
+
 struct pm89xx_vreg {
 	const char *name;
 	uint8_t type;
@@ -171,7 +174,7 @@ void pm8921_boot_done(void);
 int  pm8921_ldo_set_voltage(uint32_t ldo_id, uint32_t voltage);
 int  pm8921_config_reset_pwr_off(unsigned reset);
 int  pm8921_gpio_get(uint8_t gpio, uint8_t *status);
-int  pm8921_pwrkey_status(uint8_t *status);
+uint32_t  pm8921_get_pwrkey_is_pressed();
 int pm8921_config_led_current(enum pm8921_leds led_num,
 	uint8_t current,
 	enum led_mode sink,

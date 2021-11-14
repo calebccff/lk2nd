@@ -34,8 +34,13 @@
 #endif
 
 #include <smem.h>
+#if PLATFORM_MSM8960
+#include <dev/pm8921.h>
+#include <dev/pm8921_hw.h>
+#else
 #include <pm8x41_adc.h>
 #include <pm8x41_hw.h>
+#endif
 
 #define EXPAND(NAME) #NAME
 #define TARGET(NAME) EXPAND(NAME)

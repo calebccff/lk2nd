@@ -2,7 +2,11 @@
 #include <debug.h>
 #include <target.h>
 #include <dev/keys.h>
+#if PLATFORM_MSM8960
+#include <dev/pm8921.h>
+#else
 #include <pm8x41.h>
+#endif
 #include <platform/gpio.h>
 #include <platform/timer.h>
 #include <lk2nd.h>
@@ -52,13 +56,24 @@ int target_key_pressed(int key)
 			found = true;
 			switch (keymap[i].type) {
 				case KEY_RESIN:
+#if PLATFORM_MSM8960
+					dprintf(INFO, "key %d is resin, stubbed on pm921\n", key);
+					st = 0;
+#else
 					st = pm8x41_resin_status();
+#endif
+					
 					break;
 				case KEY_GPIO:
 					st = (gpio_status(keymap[i].gpio) == keymap[i].active);
 					break;
 				case KEY_PM_GPIO:
+#if PLATFORM_MSM8960
+					pm8921_gpio_get(keymap[i].gpio, &tmp);
+#else
 					pm8x41_gpio_get(keymap[i].gpio, &tmp);
+#endif
+					
 					st = (tmp == keymap[i].active);
 					break;
 			}
@@ -72,13 +87,14 @@ int target_key_pressed(int key)
 		return 0;
 
 	/* fallback to default handlers only if the keycode wasn't set in the DT */
+#if !PLATFORM_MSM8960
 	switch (key) {
 		case KEY_VOLUMEDOWN:
 			return target_volume_down_old();
 		case KEY_VOLUMEUP:
 			return target_volume_up_old();
 	}
-
+#endif
 	return 0;
 }
 

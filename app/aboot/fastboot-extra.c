@@ -6,7 +6,11 @@
 #include <partition_parser.h>
 #include <platform.h>
 #include <platform/iomap.h>
+#if PLATFORM_MSM8960
+#include <dev/pm8921_regulator.h>
+#else
 #include <pm8x41_regulator.h>
+#endif
 #include <reg.h>
 #include <smd.h>
 #include <smem.h>
