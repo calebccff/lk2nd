@@ -1,0 +1,10 @@
+{
+        "files.associations": {
+                "pm8x41_hw.h": "c",
+                "timer.h": "c",
+                "pm8x41.h": "c",
+                "pm8x41_adc.h": "c",
+                "pm8x41_regulator.h": "c",
+                "err.h": "c"
+        }
+}

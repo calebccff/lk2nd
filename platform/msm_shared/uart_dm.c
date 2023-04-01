@@ -420,6 +420,13 @@ void uart_dm_init(uint8_t id, uint32_t gsbi_base, uint32_t uart_dm_base)
 	uart_init_flag = 1;
 }
 
+void uart_dm_earlycon_init(uint32_t uart_dm_base)
+{
+	char *data = "Android Bootloader - UART_DM Initialized!!!\n";
+	msm_boot_uart_dm_write(uart_dm_base, data, 44);
+	port_lookup[0] = uart_dm_base;
+}
+
 /* UART_DM uses four character word FIFO where as UART core
  * uses a character FIFO. so it's really inefficient to try
  * to write single character. But that's how dprintf has been

@@ -259,6 +259,8 @@ void target_fastboot_init(void)
 
 void target_uart_init(void)
 {
+	uart_dm_earlycon_init(0x16440000);
+	return;
 	unsigned target_id = board_machtype();
 
 	switch (target_id) {
@@ -428,7 +430,7 @@ void target_detect(struct board_data *board)
 			platform);
 		ASSERT(0);
 	}
-	target_id = LINUX_MACHTYPE_8930_CDP;
+	target_id = LINUX_MACHTYPE_8960_CDP;
 
 	board->target = target_id;
 }
